@@ -2,18 +2,18 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f7f6f0"><meta name="description" content="오늘의 말씀을 손끝에 새기는 시간. 성경 구절로 함께하는 단문·장문 한글 타자연습.">
+  <meta name="theme-color" content="#101010"><meta name="description" content="오늘의 말씀을 손끝에 새기는 시간. 성경 구절로 함께하는 단문·장문 한글 타자연습.">
   <title>말씀타자 — 손끝에 새기는 말씀</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 </head>
 <body>
 <header class="header wrap">
-  <a href="./" class="brand" aria-label="말씀타자 홈"><span class="brand-mark">言</span>말씀타자<span class="brand-sub">말씀을 쓰다, 마음에 담다.</span></a>
+  <a href="./" class="brand" aria-label="말씀타자 홈"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 32" fill="none"><path d="M12 2v28M3 11h18" stroke="currentColor" stroke-width="1.5"/></svg></span>말씀타자<span class="brand-sub">말씀을 쓰다, 마음에 담다.</span></a>
   <div class="header-actions"><button id="records" class="quiet">나의 기록 <span aria-hidden="true">↗</span></button><button id="theme" class="theme" aria-label="어두운 화면으로 전환">☾</button></div>
 </header>
 <main class="wrap">
-  <section class="intro"><div><p class="eyebrow">A MOMENT WITH THE WORD</p><h1>손끝에 새기는 말씀<span class="green">.</span></h1><p class="subtitle">서두르지 않아도 괜찮아요. 한 글자씩, 말씀에 머물러 보세요.</p></div><div class="date-stamp"><span id="date"></span><span>오늘도, 말씀과 함께</span></div></section>
+  <section class="intro"><div><p class="eyebrow">SCRIPTURE · TYPE &amp; MEDITATE</p><h1>손끝에 새기는 말씀<span class="gold">.</span></h1><p class="subtitle">서두르지 않아도 괜찮아요. 한 글자씩, 말씀에 머물러 보세요.</p></div><div class="date-stamp"><span id="date"></span><span>오늘도, 말씀과 함께</span></div></section>
   <section class="workspace" aria-label="성경 타자연습">
     <div class="toolbar"><div class="tabs" role="tablist" aria-label="연습 종류"><button class="tab active" role="tab" aria-selected="true" data-mode="today">오늘의 말씀<span class="today-dot"></span></button><button class="tab" role="tab" aria-selected="false" data-mode="short">단문 연습</button><button class="tab" role="tab" aria-selected="false" data-mode="long">장문 연습</button></div><label class="book-select"><span class="sr-only">성경 책 선택</span><select id="book"><option value="all">모든 말씀</option></select></label></div>
     <div class="practice-head"><span class="pill" id="mode-label">DAILY VERSE</span><span id="passage-count"></span></div>
