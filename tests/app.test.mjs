@@ -19,12 +19,19 @@ test('한글 조합, 오타 수정, 완주 저장, 모드 전환과 재연습',a
   input.value=target[0];input.dispatchEvent(new w.CompositionEvent('compositionend'));input.dispatchEvent(new w.Event('input'));
   assert.equal($('#accuracy').textContent,'100');
   input.value=target[0]+'X';input.dispatchEvent(new w.Event('input'));assert.equal($('#accuracy').textContent,'50');assert.ok($('#target .wrong'));
-  input.value=target;input.dispatchEvent(new w.Event('input'));$('#complete').click();assert.equal($('#result-dialog').open,true);assert.equal(input.disabled,true);
+  input.value=target;input.dispatchEvent(new w.Event('input'));$('#complete').click();
+  for(let i=0;i<30&&!$('#result-dialog').open;i++){input.value=$('#target').textContent;input.dispatchEvent(new w.Event('input'));$('#complete').click();}
+  assert.equal($('#result-dialog').open,true);assert.equal(input.disabled,true);
   const saved=JSON.parse(localStorage.getItem('word-type-records'));assert.equal(saved.length,1);assert.ok(saved[0].accuracy<100);assert.equal($('#daily-count').textContent,'1');
   $('#complete').click();assert.equal(JSON.parse(localStorage.getItem('word-type-records')).length,1);
   $('#result-next').click();assert.equal($('#result-dialog').open,false);assert.equal(input.value,'');assert.equal(input.disabled,false);assert.equal($('#book').disabled,false);
-  document.querySelector('[data-mode="long"]').click();assert.equal($('#mode-label').textContent,'LONG PRACTICE');assert.ok($('#target').textContent.length>150);
+  document.querySelector('[data-mode="long"]').click();assert.equal($('#mode-label').textContent,'장문 연습');assert.ok($('#target').textContent.length<=42);assert.match($('#line-position').textContent,/^1 \/ /);
   $('#book').value='시편';$('#book').dispatchEvent(new w.Event('change'));assert.match($('#reference').textContent,/^시편/);
+  const firstLine=$('#target').textContent;
+  input.dispatchEvent(new w.CompositionEvent('compositionstart'));input.value=firstLine;input.dispatchEvent(new w.Event('input'));
+  await new Promise(r=>setTimeout(r,5));assert.match($('#line-position').textContent,/^1 \/ /);
+  input.dispatchEvent(new w.CompositionEvent('compositionend'));input.dispatchEvent(new w.Event('input'));
+  await new Promise(r=>setTimeout(r,5));assert.match($('#line-position').textContent,/^2 \/ /);assert.equal(input.value,'');assert.equal($('#previous-line').textContent,firstLine);assert.equal(JSON.parse(localStorage.getItem('word-type-records')).length,1);
   input.value='아';input.dispatchEvent(new w.Event('input'));$('#restart').click();assert.equal(input.value,'');assert.equal($('#accuracy').textContent,'100');assert.equal($('#elapsed').textContent,'00:00');
   $('#theme').click();assert.equal(document.body.classList.contains('dark'),true);assert.equal(localStorage.getItem('word-type-theme'),'dark');$('#records').click();assert.equal(document.querySelectorAll('.record-row').length,1);
  }finally{globalThis.fetch=realFetch;globalThis.setInterval=realInterval;dom.window.close();}

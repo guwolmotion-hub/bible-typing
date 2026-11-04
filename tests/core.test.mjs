@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {keyCount,changedInput,dailyIndex,localDay,clock} from '../core.mjs';
+import {keyCount,changedInput,dailyIndex,localDay,clock,splitLines} from '../core.mjs';
 test('두벌식 자소와 겹모음·겹받침의 실제 키 수',()=>{
  assert.equal(keyCount('가'),2);assert.equal(keyCount('각'),3);assert.equal(keyCount('과'),3);assert.equal(keyCount('괜'),4);assert.equal(keyCount('값'),4);assert.equal(keyCount('왜'),3);assert.equal(keyCount('A '),2);
 });
@@ -20,4 +20,9 @@ test('모든 연습은 고유한 출처와 정상화된 실제 본문을 가짐'
  assert.equal(new Set([...d.short,...d.long].map(p=>p.id)).size,42);
  for(const p of [...d.short,...d.long]){assert.ok(p.text.length>0);assert.ok(!/[<>\r\n]| {2}/.test(p.text));assert.match(p.ref,/\d+:\d+/);}
  assert.ok(d.long.every(p=>p.verses>=6));
+ for(const p of [...d.short,...d.long])for(const limit of [8,18,32,42]){
+   const lines=splitLines(p.text,limit);let rebuilt='';
+   for(const line of lines){assert.ok(line.text.length<=limit);assert.equal(line.text,p.text.slice(line.start,line.end));rebuilt+=p.text.slice(rebuilt.length,line.end);}
+   assert.equal(rebuilt,p.text);
+ }
 });

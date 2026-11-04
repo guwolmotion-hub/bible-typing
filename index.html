@@ -19,10 +19,11 @@
     <div class="practice-head"><span class="pill" id="mode-label">DAILY VERSE</span><span id="passage-count"></span></div>
     <div class="passage-meta"><span id="reference">말씀을 불러오는 중</span><span class="translation">개역한글</span></div>
     <h2 id="passage-title" hidden></h2>
-    <p id="target" class="target" aria-label="따라 입력할 성경 구절"></p>
+    <div class="line-heading"><span>따라 쓸 말씀</span><span id="line-position">1 / 1줄</span></div>
+    <div class="reading-area"><p id="previous-line" class="context-line"></p><p id="target" class="target" aria-label="따라 입력할 성경 구절"></p><p id="upcoming-line" class="context-line"></p></div>
     <div class="input-shell"><label for="typing" class="sr-only">위의 성경 구절을 입력하세요</label><textarea id="typing" placeholder="말씀의 첫 글자를 입력하면 연습이 시작돼요." spellcheck="false" autocomplete="off" autocapitalize="off" disabled></textarea><div class="input-footer"><span id="input-hint">한/영 키로 한글 입력을 확인해 주세요</span><span><b id="typed-count">0</b> / <span id="total-count">0</span>자</span></div></div>
     <div class="progress-track" role="progressbar" aria-label="입력 진행률" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><div id="progress"></div></div>
-    <div class="practice-bottom"><span class="keyboard-hint"><kbd>Enter</kbd> 입력 완료 <span class="hint-divider">·</span> <kbd>Shift</kbd> + <kbd>Enter</kbd> 줄바꿈</span><div class="practice-actions"><button id="restart" class="quiet">↺ 다시 쓰기</button><button id="next" class="quiet">다른 말씀 →</button><button id="complete" class="primary" disabled>입력 완료 <span>↵</span></button></div></div>
+    <div class="practice-bottom"><span class="keyboard-hint">한 줄을 정확히 입력하면 자동으로 다음 줄로 넘어갑니다.</span><div class="practice-actions"><button id="restart" class="quiet">↺ 처음부터</button><button id="next" class="quiet">다른 말씀 →</button><button id="complete" class="primary" disabled>다음 줄 <span>↵</span></button></div></div>
     <div id="message" role="status" class="message" aria-live="polite"></div>
   </section>
   <section class="stats" aria-label="실시간 연습 통계"><div><span class="stat-label">현재 타수 <span>타/분</span></span><strong id="speed">0</strong><span class="stat-note">두벌식 자소 기준</span></div><div><span class="stat-label">정확도</span><strong><span id="accuracy">100</span><small>%</small></strong><span class="stat-note">입력한 글자 기준</span></div><div><span class="stat-label">연습 시간</span><strong id="elapsed">00:00</strong><span class="stat-note">나만의 속도로 천천히</span></div><div class="daily-stat"><span class="stat-label">오늘의 완주</span><strong><span id="daily-count">0</span><small>회</small></strong><span class="stat-note" id="daily-note">작은 시작이 쌓이는 하루</span></div></section>

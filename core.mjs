@@ -21,3 +21,13 @@ export function changedInput(previous,value,target){
 export function localDay(d=new Date()){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 export function dailyIndex(day,length){return [...day].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,0)%length;}
 export function clock(seconds){return `${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(Math.floor(seconds%60)).padStart(2,'0')}`;}
+export function splitLines(text,limit=42){
+  const lines=[];let start=0;
+  while(start<text.length){
+    let end=Math.min(start+limit,text.length);
+    if(end<text.length){const space=text.lastIndexOf(' ',end);if(space>start)end=space;}
+    lines.push({text:text.slice(start,end),start,end});
+    start=end+(text[end]===' '?1:0);
+  }
+  return lines;
+}
